@@ -1,0 +1,14 @@
+RewriteEngine On
+# Set the base to your project folder
+RewriteBase /Furqan1/
+
+# If the request isn't a real file, send it to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# INCORRECT: Strips query strings
+RewriteRule ^([a-zA-Z0-9/]+)$ index.php?url=$1 [L]
+
+# CORRECT: Appends the query strings
+RewriteRule ^([a-zA-Z0-9/]+)$ index.php?url=$1 [QSA,L]
